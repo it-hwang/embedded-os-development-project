@@ -39,4 +39,3 @@ $(navilos): $(ASM_OBJS) $(LINKER_SCRIPT)
 build/%.o: boot/%.S
 	mkdir -p $(shell dirname $@)
 	$(CC) -march=$(ARCH) -mcpu=$(MCPU) -I $(INC_DIRS) -c -g -o $@ $<
-  
