@@ -20,7 +20,7 @@
         pftch_abt_handler_addr: .word dummy_handler
         data_abt_handler_addr:  .word dummy_handler
         irq_handler_addr:       .word dummy_handler
-        data_abt_handler_addr:  .word dummy_handler
+        fiq_handler_addr:       .word dummy_handler
     vector_end:
 
     reset_handler:
