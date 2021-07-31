@@ -25,14 +25,15 @@ uint8_t Hal_uart_get_char(void)
 
     while(Uart->uartfr.bits.RXFE);
 
+    data = Uart->uartdr.all;
+
     // Check the error flag
-    if (Uart->uartdr.all & 0xFFFFFF00)
+    if (data & 0xFFFFFF00)
     {
         //Clear the error
         Uart->uartrsr.all = 0xFF;
         return 0;
     }
 
-    data = Uart->uartdr.bits.DATA;
-    return data;
+    return (uint8_t)(data & 0xFF);
 }
