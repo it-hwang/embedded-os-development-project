@@ -26,14 +26,10 @@ uint8_t Hal_uart_get_char(void)
     while(Uart->uartfr.bits.RXFE);
 
     // Check the error flag
-    if (Uart->uartdr.bits.BE || Uart->uartdr.bits.FE ||
-        Uart->uartdr.bits.OE || Uart->uartdr.bits.PE)
+    if (Uart->uartdr.all & 0xFFFFFF00)
     {
         //Clear the error
-        Uart->uartrsr.bits.BE = 1;
-        Uart->uartrsr.bits.FE = 1;
-        Uart->uartrsr.bits.OE = 1;
-        Uart->uartrsr.bits.PE = 1;
+        Uart->uartrsr.all = 0xFF;
         return 0;
     }
 
